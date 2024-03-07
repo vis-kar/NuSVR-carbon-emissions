@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carbon Emissions Predictor</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carbon Emissions Predictor REST Endpoints</h1>
+    <p>This page documents the available endpoints in this Flask application.</p>
+    <table>
+        <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>/</td>
+            <td>GET</td>
+            <td>Serves the documentation page.</td>
+        </tr>
+        <tr>
+            <td>/predict</td>
+            <td>POST</td>
+            <td>Predicts carbon emissions using a NuSVR model.</td>
+        </tr>
+    </table>
+    <h2>/predict Endpoint</h2>
+    <p>This endpoint accepts a JSON payload containing the following features and predicts the carbon emissions using a pre-trained NuSVR model.</p>
+    <h3>Request body:</h3>
+    <ul>
+        <li><b>transport</b> (float): Transportation-related emissions (kg CO2 equivalent).</li>
+        <li><b>electricity</b> (float): Electricity-related emissions (kg CO2 equivalent).</li>
+        <li><b>meals</b> (float): Food-related emissions (kg CO2 equivalent).</li>
+        <li><b>waste</b> (float): Waste-related emissions (kg CO2 equivalent).</li>
+    </ul>
+    <h3>Response:</h3>
+    <ul>
+      <li><b>result</b> (float): The predicted carbon emissions (kg CO2 equivalent).</li>
+    </ul>
+    <h3>Error responses:</h3>
+    <ul>
+        <li><b>Status code 400 (Bad Request):</b> If any of the required fields are missing in the request body.</li>
+        <li><b>Status code 403 (Forbidden):</b> If the request is not a POST request or the content type is not JSON.</li>
+    </ul>
+</body>
+</html>
